@@ -1,0 +1,25 @@
+08 04 2024
+    CREATE TABLE `kreporttypes` (`ID` INT NOT NULL AUTO_INCREMENT , `Label` VARCHAR(200) NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
+    
+    INSERT INTO `kreporttypes` (`ID`, `Label`) VALUES (NULL, 'Pivot Grid Report'), (NULL, 'Data Grid Report');
+    
+    CREATE TABLE `kreport_template_data` (
+    `ID` int(11) NOT NULL,
+    `TemplateName` varchar(300) NOT NULL,
+    `TemplateDescription` varchar(600) NOT NULL,
+    `ReportID` int(11) NOT NULL,
+    `TemplateTypeID` int(11) NOT NULL,
+    `UserID` int(11) NOT NULL,
+    `ReportJson` text NOT NULL,
+    `CreatedAt` timestamp NULL DEFAULT current_timestamp(),
+    `UpdatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+    ALTER TABLE `kreport_template_data`  ADD PRIMARY KEY (`ID`);
+
+
+
+
+    COMMITTED ON 09 04 2024
+
+10 04 2024

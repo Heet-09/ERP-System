@@ -1,0 +1,425 @@
+Date            FileName             Description
+10/01/2024      model.php              1) code added at line no. 197, 199, 211
+                form-init.php          2) validation condition added at  line no. 99 to 111
+                                       3) validation variable updated at line no. 142, 190, 194, 405
+                                       4) validation condition added at line no 96 to 133
+12/01/24        form-init.php          5) FildSize variable added at line 164
+                                       6)ALTER TABLE `kmainfields` CHANGE `FieldSize` `FieldSizeSM` INT(11) NOT NULL;
+                                       7)ALTER TABLE `kmainfields` ADD `FieldSizeMD` INT NOT NULL AFTER `FieldSizeSM`;
+                                       8)ALTER TABLE `kmainfields` ADD `FieldSizeXS` INT(11) NOT NULL AFTER `FieldSizeMD`;
+13/01/24        form-init.php          9) line no. 72 to 100 added <script></script>
+
+19/01/24        dbMySQL.php            10)Line 1046 update $sql .= "'" . $t2[$h][$j-1]. "',"; -1 added because mapping going wrong
+20/01/24        dbMySQL.php            11)Line no 912 added array_unshift($t2[$j], $dbPK[0][$j]);
+                                       12)Line no 1054 to 1058 added condition for when we are saving only 
+                                        purchase inword form then don't allow to insert empty map_purchaseinward_products data
+                                        if($t2[0][1] != 0){
+								                  if($k_debug) echo '<br/>CD107: '.$sql.'<br/>';
+								                  $result = db::getInstance()->db_insertQuery($sql);
+								                  if($k_debug) print_r($result);
+							                   }
+               model.php               13) Line no 215 added $code[$i][17] = $result['result_set'][$i]['Onchange'];
+                                       14) Line no. 217 added $code[$i][18] = $result['result_set'][$i]['OnchangeParameters'];
+22/01/2024     form-init.php           15) function CreateOnchangeScript() added at line 98 to 203
+                                       16) Line no. 2047 added if condition
+                                          if(sizeof($eresult) > 0)
+23/01/2024     form-init.php           17) Line No 645 modify $flds = '<div class="col-md-6"><label>'.$arr[2].$reqv.'</label>'.$addNewFn.'<br/><div class="multi-check" id="'.$arr[0].'-multi-div">';
+               form-init.php           18) Line no 435 modify '<div class="'.$divClass.'"><label>'.$arr[2].$reqv.'</label><br /><div id="'.$arr[0].'-div">'; one div added
+               form-init.php           19) Line no 438 modify $flds = '<div class="'.$divClass.'"><label>'.$arr[2].$reqv.'</label><br /><div id="'.$arr[0].'-div">';
+               form-init.php           20) Line no. 348 & 352 updated div class modify class='".$divClass."'
+               form-init.php           21) Line no 438 updated class='".$divClass."'
+               form-init.php           22) Line no. 447 to 450 added 
+                                          if($arr[17] == 1){
+							                        $onchange = " onchange=\"CreateOnchangeScript('" . $arr[18] . "', '".$m[0]."', '".$arr[1]."');\"";
+							                        $flds .= $onchange;
+						                        }
+               form-init.php           23)Line no 458 to 461 added
+                                          if($arr[17] == 1){
+							                        $onchange = " onchange=\"CreateOnchangeScript('" . $arr[18] . "', '".$m[0]."', '".$arr[1]."');\"";
+							                        $flds .= $onchange;
+						                        }
+               form-init.php           24) Line no. 527 to 530 added
+                                          if($arr[17] == 1){
+			                                    $onchange = " onchange=\"CreateOnchangeScript('" . $arr[18] . "', '".$m[0]."', '".$arr[1]."');\"";
+			                                    $flds .= $onchange;
+		                                    }
+               form-init.php           25) Line no 525 updated class="'.$divClass.'"
+               form-init.php           26) Line no. 571 updated
+                                          return "<div class='".$divClass."'><label>".$arr[2].$reqv."</label><input ".$reqf." class='form-control dyn1' value='".$arr[4]."' type='date' ".$arr[6]." ".$otherInputParams." name='".$arr[0]."' id='".$arr[0]."' /></div>";
+               form-init.php           27) Line no. 581 updated
+                                          return "<div class='".$divClass."'><label>".$arr[2].$reqv."</label><input ".$reqf." class='form-control dyn1' value='".$arr[4]."' type='number' ".$arr[6]." ".$otherInputParams." name='".$arr[0]."' id='".$arr[0]."' /></div>";
+               form-init.php           28) Line no. 587 updated
+                                          return "<div class='".$divClass."'><label>".$arr[2].$reqv."</label><input ".$reqf." class='form-control dyn1' ".$otherInputParams." value='".$arr[4]."' type='email' name='".$arr[0]."' id='".$arr[0]."' /></div>";
+               dbMySQL.php             29) Line no. 687 remove ` this sign $sql = "UPDATE ".$db[0]." SET ";//`".$code[0][0]."` = '". mysql_real_escape_string($_POST[$code[0][0]]) ."'";
+               dbMySQL.php             30) Line No. 701 checked if field type 9 == 13 
+                                             $sql = "UPDATE ".$db[0]." SET ";//`".$code[0][0]."` = '". mysql_real_escape_string($_POST[$code[0][0]]) ."'";
+               dbMysql.php             31) Line no 888 commented
+                                             $t2[$cntt2][$ct2] = db::getInstance()->real_escape_string($_POST[$dynamix[$i][1][3].$dynamix[$i][0][$k][1]][$j]);
+               dbMySQL.php             32) Line No. 1161 one morecondition added in if statement
+                                        if($m2mdbtype[$i] == 11 || $m2mdbtype[$i] == 9 ){
+               dbMySQL.php             33) Line No. 1251 add some text in comment section
+                                        //CODE FOR MULTIPLE MANY TO MANY RELATION MAPPING TABLE CODE 11 & 13 & 9
+               dbMySQL.php             34) Line No. 1521 updated -
+                                        if($k_debug) echo "<br/>INSERT INTO ". $mapTable ."-". $mapIndex ."-". $mapVariant ."-". $editID ."-". $mapValues[$j];
+26/1/2024      form-init.php           35) CreateOnchangeScriptGrid function added at line 97 to 157
+               form-init.php           36) Line added at line 2414 to 2419
+                                             if($m[$i][8] == 1){
+                                                $onchange = " onchange=\"CreateOnchangeScriptGrid(this);\"";
+                                                $flds .= $onchange;
+                                                $onchangeHidden = '<input type="hidden" id="'.$d[3].$m[$i][1].'-hidden" value="' . $m[$i][9] . '" />';//,' . $m[$i][1] . ',' . $m[$i][0] . '
+                                                // $changeScript .= "$('[name=\"".$d[3].$m[$i][1]."[]\"]').change(function(evt) { alert('The option with value ' + $(this).val() + ' and text ' + evt.target.value + ' ' + $(this).text() + ' was selected.'); });";
+                                             }
+               form-init.php           37) LIne 2428 updated added $onchangeHidden
+                                          $flds .= '</select>'.$onchangeHidden.'</td>';  
+                                       38) Line added at line 2599 to 2604
+                                          if($m[$i][8] == 1){
+                                             $onchange = " onchange=\"CreateOnchangeScriptGrid(this);\"";
+                                             $fvals .= $onchange;
+                                             $onchangeHidden = '<input type="hidden" id="'.$d[3].$m[$i][1].'-hidden" value="' . $m[$i][9] . '" />';//,' . $m[$i][1] . ',' . $m[$i][0] . '
+                                             // $changeScript .= "$('[name=\"".$d[3].$m[$i][1]."[]\"]').change(function(evt) { alert('The option with value ' + $(this).val() + ' and text ' + evt.target.value + ' ' + $(this).text() + ' was selected.'); });";
+                                          }       
+               form-init.php           39) Line 2619 updated 
+                                          $fvals .= '</select>'.$onchangeHidden.'</td>';
+               form-init.php           40) Line no. 709  updated
+                                          $flds = '<div class="'.$divClass.'"><label>'.$arr[2].$reqv.'</label>'.$addNewFn.'<br/><div class="multi-check" id="'.$arr[0].'-multi-div">';
+                                       41) Line No. 2118 updated
+                                          $flds = '<div class="'.$divClass.'"><label>'.$arr[2].$reqv.'</label><select multiple data-plugin-selectTwo '.$reqf.' name="'.$m[0].'[]" id="'.$m[0].'" class="form-control populate" '.$arr[6].'>';
+                                       42) Line no. 2231 updated 
+                                          $flds = '<div class="'.$divClass.'"><label>'.$arr[2].$reqv.'</label>&nbsp;'.$addNewFn.'
+27/1/2024      form-init.php           43) CreateOnChangeScriptGridCalculation function added at line 97 to 121
+                                       44) code added at line 2442 to 2446
+                                             if($m[$i][12] > 0){
+                                                $onchange = " onchange=\"CreateOnChangeScriptGridCalculation(this,".$m[$i][12].");\"";
+                                                $flds .= $onchange;
+                                                // $flds .= "readonly";
+                                             } 
+               form-init.php           45) code added at line 2640 to 2644
+                                             if($m[$i][12] > 0){	//Grid Calculation Value from DB
+                                                $onchange = " onkeyup=\"CreateOnChangeScriptGridCalculation(this,".$m[$i][12].");\"";
+                                                $fvals .= $onchange;
+                                                // $fvals .= "readonly";
+                                             }         
+               form-init.php           46) footer grid added at line 2770 to 2782
+                                             $footerGrid = "";
+                                                if($d[6] > 0){	
+                                                   $footerGrid = '<tfoot><tr>'; //class="grp'.$d[3].'" id="'.$d[3].'GridFooter"
+                                                      $footerGrid .= '<td></td>';
+                                                      for($i = 0; $i < sizeof($m); $i++){	
+                                                         if($m[$i][12] > 0){	 
+                                                            $footerGrid .= '<td><input type="text" class="form-control" readonly name="" id="'.$m[$i][1].'Footer" value=""></td>';
+                                                         }else{
+                                                            $footerGrid .= '<td></td>';
+                                                         }
+                                                      }
+                                                   $footerGrid .= '</tr></tfoot>';
+                                                }       
+               form-init.php           47) line 2786 updated   
+                                             return $script . $temp . $fldCnt . $tableStart . $tableHead . $headerGridStart . "0" . $headerGridEnd . $flds . $end . $footerGrid . $tableEnd."</div></div>";
+                                       48) line 2790 updated
+                                             return $script . $temp . $fldCnt . $tableStart . $tableHead . $fvals . $end . $footerGrid . $tableEnd."</div></div>";
+               form-init.php           49) textbox block updated added condition
+                                          if($arr[1] == 1){ 	//Textbox
+                                             //echo $arr[19];
+                                             if(strlen($arr[19]) < 2){	//CONDITION TO CHECK ShowTextBoxInGrid
+                                                //if($arr[0] != "Total"){	//CONDITION TO CHECK ShowTextBoxInGrid
+                                                   // if(strcmp($arr[6], "maxlength=")) $maxChar = "maxlength='200'";    //ADDED FOR VAPT  // else $maxChar = '';
+                                                return "<div class='".$divClass."'><label>".$arr[2].$reqv."</label><input ".$reqf." class='form-control dyn1' value='".$arr[4]."' type='text' ".$otherInputParams." ".$arr[6]." name='".$arr[0]."' id='".$arr[0]."' /></div>";
+                                             }else{
+                                                return "<script>window.addEventListener('load', function() {
+                                                         $('#".$arr[19]."Footer').attr('name', '".$arr[0]."'); 
+                                                         $('#".$arr[19]."Footer').val($arr[4]);
+                                                      });
+                                                         
+                                                      </script>";
+                                             }
+                                          } 
+6/2/2024       form-init.php           50) Function dynamicFreeFill added at line 73 to 128
+               form-init.php           51) Condition added at line 393 to 401
+                                           if($arr[21] == 1){
+                                             if(strlen($arr[4]) == 0){
+                                                echo "<script>
+                                                window.addEventListener('load', function() {
+                                                   dynamicFreeFill('".$arr[22]."');
+                                                }); </script>";
+                                                $readOnly = "readonly";
+                                             }
+                                          }    
+               model.php               52) code added at 239 to 241
+                                          $code[$i][21] = $result['result_set'][$i]['DynamicFreeFill'];			//DynamicFreeFill
+                                          $code[$i][22] = $result['result_set'][$i]['OnDynamicFreeFill'];			//OnDynamicFreeFill
+				   form-init.php           53) code added at line 434 to 437
+                                             $textareaHeight = "";
+                                             if($arr[20] != 0){ //to check textarea height
+                                                $textareaHeight = "rows = $arr[20]";
+                                             }                                
+7/2/2024       dbMySQL.php             54) condition added at line 1617 to 1622
+                                           if($saveAddMore == 1){
+                                                echo '<script>window.location="'.$_SERVER['HTTP_REFERER'].'&form='.$FormID.'";</script>';
+
+                                             }else{
+                                                echo '<script>window.location="'.$_SERVER['HTTP_REFERER'].'&view=1&save='.$edited.'";</script>';
+                                             }
+               model.php               55)Code added at line no. 171 to 181
+                                             if($result['result_set'][$i]['SaveAddMore'] == 1){
+                                               $saveAddMore = 1;
+                                             }
+                                             if($result['result_set'][$i]['SaveAndPreview'] == 1){
+                                                $saveAndPreview = 1;
+                                             }
+               form-close.php          56) For showing SaveAddMore & SavePreview button code added at line no. 14 to 23
+                                          <?php 
+                                             if($saveAddMore == 1){
+                                                echo '<a href="'.$_SERVER['PHP_SELF'].'?form='.$FormID.'" ><input  type="submit" value="'.$buttonsaveaddmore.'" class="btn btn-primary"></a>';
+                                             }
+                                          ?>
+                                          <?php
+                                             if($saveAndPreview == 1){
+                                                echo '<a href="" class="btn btn-primary">SavePreview</a>';
+                                             }
+                                          ?>
+8/2/2024       form-init.php           57) Add button in Fieldtype=5 at line no. 859 to 861
+                                             if($arr[23] > 0){	
+                                                $flds .= '<button type="button" id="AddBtnModal-'.$m[0].'" style="height:29px;margin-left:46px;" value="'.$arr[23].'-'.$m[0].'" class="btn btn-primary amodal">Add</button>';
+                                             }
+               form-init.php           58) Add modal at line 500 to 521
+                                          echo '<div class="modal fade" id="AddMoreModal">
+                                                   <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                         <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">×</button> 
+                                                            <h4 class="modal-title">Add</h4>                                                             
+                                                         </div> 
+                                                         <div class="modal-body" >
+                                                            <form id="modalForm" name="modal" role="form">
+                                                               <div id="ModelContent" >
+
+                                                               </div>
+                                                               <div class="modal-footer" style="margin-top:10px;">					
+                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                  <input type="submit" class="btn btn-success" id="submit">
+                                                               </div>
+                                                            </form>
+                                                         </div>   
+                                                   
+                                                      </div>                                                                       
+                                                   </div>                                          
+                                                </div>';
+               form-init.php           59)JS function added at line 73 to 199
+                                          $(document).ready(function(){
+                                             $('.amodal').click(function(){
+                                                // alert(this.getAttribute('id'));
+                                                var BtnVal = $(this).val().split('-');
+                                                var FormId = BtnVal[0];  //Get formid
+                                                var targetFieldId = BtnVal[1]; //Get target field id
+                                                var AddModal = 'AddMoreModal'; //Modal id
+                                                var AddModalForm = 'ModelContent'; //Model bidy id where we display form
+                                                $.ajax({
+                                                   type : 'POST',
+                                                   dataType: 'json',
+                                                   data : {},
+                                                   url : '/api/form.php?FormID='+FormId+'&editID=0',
+                                                   success : function(result){
+                                                      // console.log(result);
+                                                      showModalField(result,FormId,targetFieldId,AddModal,AddModalForm);
+                                                   }
+                                                });
+                                                
+                                             });	
+
+                                             function showModalField(result, FormId, targetFieldId,AddModal,AddModalForm){
+                                                var code = result['code'];
+                                                var mfld = "";
+                                                var mreqv = [];
+                                                var mreqf = [];
+                                                
+                                                mfld += "<div class='container1'><div class='row' ><div class='col-md-12 allfields'>";
+                                                for(var i = 0; i < code.length; i++){
+                                                   mreqv[i] = "";
+                                                   mreqf[i] ="";
+                                                   if(code[i][5] == 1){
+                                                      mreqf[i] = 'required';
+                                                      mreqv[i] = '<span class="required"> *</span>'
+                                                   }
+                                                   mfld += "<div class='"+code[i][0]+"'>";
+                                                   
+                                                   if(code[i][1] == 1){ //Text
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<input class='form-control dyn1' "+mreqf[i]+" type='text' name='"+code[i][0]+"' id='"+code[i][0]+"' value=''></div>";
+                                                   }
+
+                                                   if(code[i][1] == 3){ //Textarea
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<textarea class='form-control dyn1' "+mreqf[i]+" name='"+code[i][0]+"' id='"+code[i][0]+"' value=''></textarea></div>";
+                                                   }
+
+                                                   if(code[i][1] == 6){ //Date
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<input class='form-control dyn1' "+mreqf[i]+" type='date' name='"+code[i][0]+"' id='"+code[i][0]+"' value=''></div>";
+                                                   }
+
+                                                   if(code[i][1] == 7){ //Number
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<input class='form-control dyn1' "+mreqf[i]+" type='number' name='"+code[i][0]+"' id='"+code[i][0]+"' value=''></div>";
+                                                   }
+
+                                                   if(code[i][1] == 8){ //Email
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<input class='form-control dyn1' "+mreqf[i]+" type='email' name='"+code[i][0]+"' id='"+code[i][0]+"' value=''></div>";
+                                                   }
+                                                   
+                                                   if(code[i][1] == 5){ //Select From DB
+                                                      var v =  result[code[i][0]]['result_set'];
+                                                      var k =  result[code[i][0]]['keys'];
+
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label>"+mreqv[i]+"<select style='width:-webkit-fill-available;' name='"+code[i][0]+"' id='"+code[i][0]+"'>";
+                                                      mfld += "<option value='0' ></option>";
+                                                      for(var j=0; j < v.length; j++){ 
+                                                         mfld += "<option value='"+v[j][k[0]]+"' >"+v[j][k[1]]+"</option>";
+                                                      }
+                                                      mfld += "</select></div>";
+                                                   }
+
+                                                   if(code[i][1] == 9){ //Checkbox From DB
+                                                      var v =  result[code[i][0]]['result_set'];
+                                                      var k =  result[code[i][0]]['keys'];
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label></br>";
+                                                      for(var j=0; j < v.length; j++){ 
+                                                         mfld += "<label><input '"+code[i][5]+"' type='checkbox' name='"+code[i][0]+"[]' id='"+code[i][0]+"' value=''>"+v[j][k[1]]+"</label></br>";
+                                                      }
+                                                      mfld += "</div>";
+                                                   }
+
+                                                   if(code[i][1] == 4){ //Radio From DB
+                                                      var v =  result[code[i][0]]['result_set'];
+                                                      var k =  result[code[i][0]]['keys'];
+                                                      mfld += "<div class='col-md-6'><label>"+code[i][2]+"</label></br>";
+                                                      for(var j=0; j < v.length; j++){ 
+                                                         mfld += "<label><input '"+code[i][5]+"' type='radio' name='"+code[i][0]+"' value=''>"+v[j][k[1]]+"</label></br>";
+                                                      }
+                                                      mfld += "</div>";
+                                                   }
+                                                   
+                                                   mfld += "</div>";
+                                                   
+                                                }
+                                                mfld += "<input type='hidden' id='formid' value='"+FormId+"'>";
+                                                mfld += "<input type='hidden' id='hiddenTargetField' value='"+targetFieldId+"'>";
+                                                mfld += "</div></div></div>";
+                                                $('#'+AddModalForm).html(mfld);
+                                                $('#'+AddModal).modal('show');
+                                             }
+
+                                             $("#modalForm").submit(function(event){
+                                                var targetFieldId = document.getElementById('hiddenTargetField').value;
+                                                var FormID = document.getElementById('formid').value;
+                                                submitForm(targetFieldId,FormID);
+                                                return false;
+                                             });
+                                             
+                                             function submitForm(targetFieldId,FormID){
+                                                $.ajax({
+                                                   type : 'POST',
+                                                   dataType: 'json',
+                                                   data : $('form#modalForm').serializeArray(),
+                                                   url : '/api/appdb.php?FormID='+FormID,
+                                                   success : function(result){
+                                                      // console.log(result['data']);
+                                                      $('#'+targetFieldId).append($("<option></option>")
+                                                      .attr("value", result['data'][0]['ID'])
+                                                      .text(result['data'][0]['Name']));
+                                                      $('#'+targetFieldId).val(result['data'][0]['ID']).trigger('change');
+                                                      $("#AddMoreModal").modal('hide');
+                                                      // $('#success-info').show();
+                                                      // $("#success-info").delay(5000).fadeOut(); 
+
+                                                   },
+                                                });
+                                             }
+                                          });
+ 10/2/2024     form-init.php           60)condition change line no. 2682
+                                          if($m[$i][0] == 5){	//Dropdown From DB
+               form-init.php           61)condition change line no. 2682
+                                          if($m[$i][0] == 5){	//Dropdown From DB
+               model.php               62) line added at line 300
+                                          $result1['result_set'][$j]['AddMaster']
+                                       63) AddMaster field added into array at line 342
+                                          $more[$j][13] = $moreResult['result_set'][$j]['AddMaster'];
+               form-init.php           64)Add data in master on grid dd added at line 2637 to 2639 & 2826 to 2828
+                                          if($m[$i][13] > 0){
+                                             $tableHead .= '<button type="button" class="btn btn-primary btn-sm amodal" style="margin-left:2px;" id="AddBtnModal-'.$m[$i][1].'" value="'.$m[$i][13].'-'.$m[$i][1].'">Add</button>';
+                                          }            
+         
+26/2/24        dynamicFreeFillData.php 65) Query updated as per sql SERVER
+                                          $query = "SELECT max(id),CONCAT('E-', RIGHT(REPLICATE('0', 7) + LEFT(max(id)+1, 7), 7)) as ID from purchaseinward";
+               form-init.php           66) for checkbox seleccted in edit page some code added  
+                                          			$emnydb = $extradb[$i][6];
+                                                   $emnyid = $extradb[$i][7];
+                                                   $emnyfk = $extradb[$i][8];
+                                                   $flag = 0;
+                                                   if(!(is_null($p) || $p == "")) {
+                                                      for($g = 0; $g < sizeof($p); $g++){
+                                                         if($k == $p[$g][$emnyfk]){
+                                                            $flag = 1;
+                                                            break;
+                                                         }
+                                                      }
+                                                   }
+                                                   
+                                                   if($flag) {
+                                                      $flds .= '<label><input type="checkbox" checked ".$otherInputParams." '.$arr[6].' name="'.$m[0].'[]" id="'.$m[0].'" value="'. $k .'" >&nbsp;'.$eresult['result_set'][$j][$elb].'</label><br/>';
+                                                   }
+                                                   else { //CHANGED ON 03022020
+                                                      $flds .= '<label><input type="checkbox" '.$arr[6].' name="'.$m[0].'[]" id="'.$m[0].'" value="'. $k .'" >&nbsp;'.$eresult['result_set'][$j][$elb].'</label><br/>';
+                                                   }
+27/2/24        form-close.php          67) For adding condition on save and SaveAddMore button added name
+				                              echo '<input  type="submit" name="saveButton" value="'.$buttonsaveaddmore.'" class="btn btn-primary">';
+               dbMySQL.php             68) getting save button value
+                                             $saveButton = isset ($_POST['saveButton']) ? $_POST['saveButton'] : 0; 
+                                          And on redirect code add condition
+                                             if($saveButton == "SaveAddMore" || $saveButton == "UpdateAddMore"){ //redirect on click button SaveAddMore
+                                                echo '<script>window.location="'.$_SERVER['HTTP_REFERER'].'&form='.$FormID.'";</script>';
+
+                                             }else{
+                                                echo '<script>window.location="'.$_SERVER['HTTP_REFERER'].'&view=1&save='.$edited.'";</script>';
+                                             }
+4/3/24         list-data.php           69) For loader echo '<div id="loader" class="spinner-border text-primary center" role="status"><span class="sr-only">Loading...</span></div>';
+                                           script added
+                                           document.onreadystatechange = function() {
+                                             if (document.readyState !== "complete") {
+                                                   document.querySelector("#loader").style.visibility = "visible";
+                                             } 
+                                             else {
+                                                   document.querySelector("#loader").style.display = "none";
+                                             }
+                                          };
+               k_header.php            70) Loader css 
+                                             /* Loader css */
+                                             #loader {
+                                                border: 12px solid #f3f3f3;
+                                                border-radius: 50%;
+                                                border-top: 12px solid #3498db;
+                                                width: 70px;
+                                                height: 70px;
+                                                animation: spin 1s linear infinite;
+                                             }
+                                    
+                                             .center {
+                                                position: absolute;
+                                                top: 0;
+                                                bottom: 0;
+                                                left: 0;
+                                                right: 0;
+                                                margin: auto;
+                                             }
+                                    
+                                             @keyframes spin {
+                                                100% {
+                                                   transform: rotate(360deg);
+                                                }
+                                             }
+
+6/3/24         form-init.php           71) Textbox onLostFocus check duplicate entry
+                                             $onlostfocusHidden = "";
+                                             $flds = "<div class='".$divClass."'><label>".$arr[2].$reqv."</label><input ".$reqf." class='form-control dyn1' value='".$arr[4]."' type='text' ".$otherInputParams." ".$arr[6]." name='".$arr[0]."' id='".$arr[0]."' ";
+                                             if($arr[26] == 1){
+                                                $flds .= "onfocusout=\"onLostFocus(this);\"";
+                                                $onlostfocusHidden = '<input type="hidden" id="'.$arr[0].'-hidden" value="'.$arr[27].'">';
+
+                                             }
+                                             $flds .= "/>".$onlostfocusHidden."</div>";
+                                             return $flds;

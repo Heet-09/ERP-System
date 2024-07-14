@@ -1,0 +1,33 @@
+20/1/24         1)ALTER TABLE `kmainfields` ADD `onchange` BOOLEAN NOT NULL AFTER `TableMapOtherKey`, ADD `onchange_parameters` VARCHAR(500) NOT NULL AFTER `onchange`;
+                2)ALTER TABLE `kmainfields` CHANGE `onchange` `Onchange` TINYINT(1) NOT NULL;
+                3)ALTER TABLE `kmainfields` CHANGE `onchange_parameters` `OnchangeParameters` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+                4)CREATE TABLE `klabs_kframe`.`master_yesno` (`ID` INT(11) NOT NULL AUTO_INCREMENT , `label` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+                5)ALTER TABLE `kmainfields` CHANGE `OnchangeParameters` `OnchangeParameters` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+                6)INSERT INTO `master_yesno` (`ID`, `label`) VALUES ('1', 'Yes'), ('2', 'No');
+                7)ALTER TABLE `kmainfields` CHANGE `Onchange` `Onchange` INT(11) NOT NULL;                
+22/1/24         8)UPDATE `master_fieldtype` SET `Label` = '3 = Textarea' WHERE `master_fieldtype`.`ID` = 4;
+                9)ALTER TABLE `kmainfields` CHANGE `TableMapTable` `TableMapTable` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'To be used when we have to use a mapping table for many to many relation. Mention Table name here ', CHANGE `TableMapPrimary` `TableMapPrimary` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'Mention the Primary Key used in Main table to be linked here (aka Foreign key to the main table)', CHANGE `TableMapOtherKey` `TableMapOtherKey` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'Mention the Field name where the actual value will be stored';
+                10) ALTER TABLE `kmainfields` CHANGE `MDRelationTable` `MDRelationTable` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'The use of this field has been deprecated. Check usage before deleting.\r\nMD fields are to be used while creating a Dynamic Grid by giving Grid ID to the previous field and giving Table & PK here.';
+
+24/1/2024       11)ALTER TABLE `products` ADD `ProductType` INT(11) NOT NULL DEFAULT '0' AFTER `ProductDetail`;
+26/1/2024       12)ALTER TABLE `kgridfields` ADD `Onchange` INT(11) NOT NULL AFTER `ViewDisplayName`, ADD `OnchangeParameters` VARCHAR(500) NULL AFTER `Onchange`;
+                13)ALTER TABLE `kgridfields` CHANGE `Onchange` `Onchange` INT(11) NULL DEFAULT '0';
+29/1/2024       14)ALTER TABLE `kmainfields` ADD `Keyup` INT(11) NOT NULL DEFAULT '0' AFTER `OnchangeParameters`, ADD `KeyupParameters` VARCHAR(500) NULL AFTER `Keyup`;
+                15)ALTER TABLE `kgridfields` ADD `Keyup` INT(11) NOT NULL DEFAULT '0' AFTER `OnchangeParameters`, ADD `KeyupParameters` VARCHAR(500) NULL AFTER `Keyup`;
+                16)ALTER TABLE `kgridfields` CHANGE `Keyup` `Onkeyup` INT(11) NOT NULL DEFAULT '0', CHANGE `KeyupParameters` `OnkeyupParameters` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+                17)ALTER TABLE `kmainfields` CHANGE `Keyup` `Onkeyup` INT(11) NOT NULL DEFAULT '0', CHANGE `KeyupParameters` `OnkeyupParameters` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+31/1/2024       18)ALTER TABLE `kmainfields` ADD `GridCalculation` INT(11) NOT NULL DEFAULT '0' AFTER `OnkeyupParameters`;
+                19)ALTER TABLE `kgridfields` ADD `GridCalculation` INT(11) NOT NULL AFTER `OnkeyupParameters`;    
+                20)ALTER TABLE `purchaseinward` ADD `Total` FLOAT NOT NULL AFTER `Remark`;  
+                21)ALTER TABLE `kmainfields` ADD `ShowTextBoxInGrid` VARCHAR(50) NOT NULL AFTER `TabIndex`;
+                22)ALTER TABLE `purchaseinward` ADD `VMeter` FLOAT NOT NULL AFTER `Total`;
+                23)ALTER TABLE `purchaseinward` ADD `Lumps` VARCHAR(50) NOT NULL AFTER `Meter`;    
+6/2/2024        24)ALTER TABLE `kmainfields` ADD `TextareaHeight` INT(11) NOT NULL AFTER `TextMin`;
+                25)ALTER TABLE `kmainfields` ADD `DynamicFreeFill` INT(11) NOT NULL DEFAULT '0' AFTER `OnkeyupParameters`, ADD `OnDynamicFreeFill` VARCHAR(500) NOT NULL AFTER `DynamicFreeFill`;
+7/2/2024        26)ALTER TABLE `kmainforms` ADD `SaveAddMore` TINYINT NOT NULL AFTER `OtherBtnLink`, ADD `SaveAndPreview` TINYINT NOT NULL AFTER `SaveAddMore`;
+8/2/2024        27)ALTER TABLE `kmainfields` ADD `AddMaster` INT(11) NOT NULL AFTER `OnDynamicFreeFill`;
+10/2/2024       28)ALTER TABLE `kgridfields` ADD `AddMaster` INT(11) NOT NULL DEFAULT '0' AFTER `GridCalculation`;
+                29)ALTER TABLE `kmainfields` ADD `OnDropDownYesNo` VARCHAR(500) NOT NULL AFTER `DropDownYesNo`;
+5/3/2024        30)ALTER TABLE `kmainfields` ADD `OnLostFocusYesNo` INT(11) NOT NULL AFTER `OnDropDownYesNo`, ADD `OnLostFocus` VARCHAR(500) NOT NULL AFTER `OnLostFocusYesNo`;    
+7/3/2024        31)ALTER TABLE `kmainfields` ADD `OnDropDownAjax` VARCHAR(500) NOT NULL AFTER `OnLostFocus`;
+            

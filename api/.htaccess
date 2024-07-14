@@ -1,0 +1,8 @@
+<IfModule mod_headers.c>
+    # Header set Access-Control-Allow-Origin http://www.vknyvz.com  
+    # Header set Access-Control-Allow-Credentials true
+    Header add Access-Control-Allow-Origin "https://cap.kreonsolutions.in"
+    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+</IfModule>
+

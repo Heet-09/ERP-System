@@ -1,0 +1,47 @@
+16/01/24        k_header.php         1) Modify line 16 LIMIT replace with TOP
+                                     2) Modify line 30 remove kpageaccess quotes
+                model.php            3) Modify line 95 LIMIT replace with TOP
+                model.php            4) Modify line 242 LIMIT replace with TOP
+                form-init.php        5) MOdify line 2552 IFNULL replace with ISNULL
+                login_db.php         6) Modify line 73 LIMIT replace with TOP
+                dbClass.php          7) Line number 33 change mysqli class remove
+                dbClass.php          8) Line added at line number 79, 80, 83, 84
+                dbClass.php          9) Line number 89 updated sql error class added
+                dbClass.php          10) 114, 115 line added
+                dbClass.php          11) Line 119 line update 
+                dbClass.php          12) line 121, 122, 126 update
+                db.php               13) CHANGE REVERTED TO A FN (Lineno. 1419 change real escape string replace with preg_replace)
+                dbClass.php          14) Lineno. 160 change real escape string replace with preg_replace
+                dbClass.php          15) Lineno 167 change
+                db.php               16) CHANGE REVERTED TO A FN (Line no 189 update real_escape string)
+                db.php               17) CHANGE REVERTED TO A FN (Line no. 687,792,806 `` this sign remove)
+                dbClass.php          18) Line 137, 138 added 
+                dbClass.php          19) Line 139 change sqlsrv_query
+                dbClass.php          20) Line 141 sqlsrv_rows_affected function updated
+17/01/24        dbClass.php          21) Line 161 updated
+                dbClass.php          22) Line no 166, 169, 170 added for getting last inserted id
+                dbClass.php          23) Line no 172 updated $this->insertedId replace with $row['id']
+                dbClass.php          24) Line no. 190 added
+                dbClass.php          25) Line no 200 update
+                dbClass.php          26) Line no 201, 202 added & 204 updated
+18/01/24        dbMSSQL.php          27) Line no 1570 updated preg_replace('/[^A-Za-z0-9\-\?\=\.\&]/', '', $_POST[$dynamix[$i][1][3].$dynamix[$i][0][$k][1]][$j])
+19/01/24        form-init.php        28) Line no. 450 to 452 added
+                                            if (gettype($arr[4]) != "string"){
+			                                    $arr[4] = $arr[4]->format('Y-m-d');
+		                                    }
+                                     29) Line no added. 2805 to 2809
+                                            if (gettype($temp) == "string"){
+							                    $temp =  date("d-m-Y", strtotime($temp));
+						                    }else{
+							                    $temp = $temp->format('d-m-Y');
+						                    }
+20/01/24         dbMSSQL.php         30) Line no 907 added array_unshift($t2[$j], $dbPK[0][$j]);
+                 dbMSSQL.php         31) Line no 1048 to 1054 added condition for when we are saving only 
+                                        purchase inword form then don't allow to insert empty map_purchaseinward_products data
+                                        if($t2[0][1] != 0){
+						               if($k_debug) echo '<br/>CD107: '.$sql.'<br/>';
+						               $result = db::getInstance()->db_insertQuery($sql);
+						               if($k_debug) print_r($result);
+					               }
+25/01/24          dbClassMSSQL.php    32) Line no.188 updated $string = preg_replace('/[^A-Za-z0-9\-\_\?\=\.\&\s+\:\/\{\}\,\|\#]/', '', $value);              
+

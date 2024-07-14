@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <!-- ... -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ 
+        <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.4/css/dx.light.css">
+        <!-- <link rel="stylesheet" href="index.css"> -->
+ 
+        <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/23.2.4/js/dx.all.js"></script>
+        <!-- <script type="text/javascript" src="index.js"></script> -->
+    </head>
+    <body class="dx-viewport">
+        <style>
+            #dataGrid {
+    height: 1000px;
+}
+        </style>
+        <div id="dataGrid">HIII</div>
+        <script>    
+  $(function () {
+  // Fetch data from the URL
+  fetch("https://dummyjson.com/products")
+    .then((response) => response.json())
+    .then((dataObject) => {
+      // Check if dataObject is an object and has 'products' property
+      if (
+        typeof dataObject === "object" &&
+        dataObject.hasOwnProperty("products")
+      ) {
+        const productsArray = dataObject.products; // Extract the 'products' array
+        console.log("Fetched products:", productsArray); // Log the fetched products to console for inspection
+
+        $("#dataGrid").dxDataGrid({
+          dataSource: productsArray,
+          keyExpr:"id",
+          columns:[
+          {
+            dataField:"id",
+          },{
+            dataField:"title",
+          },
+          {
+            dataField:"price",
+          },{
+            dataField:"rating",
+          },{
+            dataField:"stock",
+          },{
+            dataField:"discountprecentage",
+          }
+          ],
+          showBorders: true,
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: "Search..."
+            },
+            paging: {
+                pageSize: 10
+            }  
+        });
+      } 
+      else {
+        console.error(
+          "Error: Invalid data format or missing 'products' array."
+        );
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+});
+</script>
+
+
+        
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+18/01/2024      kpageaccess         1)ALTER TABLE kpageaccess ADD CONSTRAINT df_isArchived DEFAULT 0 FOR isArchived
+                                    2)ALTER TABLE kpageaccess ADD CONSTRAINT DF_CreatedBy DEFAULT 0 FOR CreatedBy
+                                    3)ALTER TABLE kpageaccess ADD CONSTRAINT DF_UpdatedBy DEFAULT 0 FOR UpdatedBy
+                                    4)ALTER TABLE users ADD CONSTRAINT DF_CreatedBy DEFAULT 0 FOR CreatedBy
+                                    5)ALTER TABLE purchaseinward ADD CONSTRAINT DF_CreBy DEFAULT 0 FOR CreatedBy
+                                    6)ALTER TABLE map_purchaseinward_products ADD CONSTRAINT DF_CreByMapPurchaseIn DEFAULT 0 FOR CreatedBy
+22/1/24                             7)UPDATE `master_fieldtype` SET `Label` = '3 = Textarea' WHERE `master_fieldtype`.`ID` = 4;
+24/1/2024                           8)ALTER TABLE kmainfields ADD CONSTRAINT DF_MDForeign DEFAULT 0 FOR MDForeign
+                                    9)ALTER TABLE kmainfields ADD CONSTRAINT DF_ViewEdit DEFAULT 0 FOR ViewEdit
+                                    10)ALTER TABLE kmainfields ADD CONSTRAINT DF_ViewSerial DEFAULT 0 FOR ViewSerial
+                                    11)ALTER TABLE kmainfields ADD CONSTRAINT DF_ViewDelete DEFAULT 0 FOR ViewDelete
+                                    12)ALTER TABLE kmainfields ALTER COLUMN MDLabel varchar(200) NULL
+                                    13)ALTER TABLE kmainfields ALTER COLUMN MDCondition varchar(500) NULL
+                                    14)ALTER TABLE kmainfields ADD CONSTRAINT DF_MDRelationKey DEFAULT 0 FOR MDRelationKey
