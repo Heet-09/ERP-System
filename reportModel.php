@@ -54,7 +54,7 @@ $reportMetaConfig = array(
 		}
 
         $sql = "SELECT * FROM ".$reportMetaConfig[0]." WHERE ".$reportMetaConfig[1]." = '".$ReportID."'";
-		//echo $sql;
+		echo $sql;
 		$result = db::getInstance()->db_select($sql);
 		// if($k_debug) print_r($result);
 		$viewReportSettings = array();
