@@ -29,24 +29,25 @@
   let headers;
   let result; // Declare result globally
 
-  fetch("https://dummy.kreonsolutions.in/api/edit.php?FormID=1&whereCon=%20family_details.Id%20%3E%200%20limit%2020")
-  // fetch("https://dummy.kreonsolutions.in/api/edit.php?FormID=2&whereCon=%20user_id%20%3E%202525%20limit%2020")
+    fetch("https://dummy.kreonsolutions.in/api/edit.php?FormID=1&whereCon=%20family_details.Id%20%3E%200%20limit%2020")
+     // fetch("https://dummy.kreonsolutions.in/api/edit.php?FormID=2&whereCon=%20user_id%20%3E%202525%20limit%2020")
     .then(response => response.json())
     .then(data => {
-    //   console.log(data);
+      console.log(data);
 
       result = data.data.result_set; // Assign result to the global variable
       headers = data.header;
       result.forEach(person => {
-        // Convert dateofbirth to dd-mm-yyyy format
-        // if (person.dateofbirth) {
-        //    person.dateofbirth=person.dateofbirth.replaceAll("-","/");
-        // }
+        //Convert dateofbirth to dd-mm-yyyy format
+        if (person.dateofbirth) {
+          // person.dateofbirth=person.dateofbirth.reverse();
+           person.dateofbirth=person.dateofbirth.replaceAll("-","/");
+        }
 
-        // // Convert dateanniv to dd-mm-yyyy format
-        // if (person.dateanniv) {
-        //   person.dateofbirth=person.dateofbirth.replaceAll("-","/");
-        // }
+        // Convert dateanniv to dd-mm-yyyy format
+        if (person.dateanniv) {
+          person.dateofbirth=person.dateofbirth.replaceAll("-","/");
+        }
     });
       
       // Check if result is an array and has at least one element
@@ -67,7 +68,12 @@
       }
     });
 
-    const uniqueValues={}
+    
+  
+    const uniqueValues = {
+    
+
+    };
 
   
     // function dynamicallyConfigureColumnsFromObject(anObject) {
@@ -80,31 +86,82 @@
     //             map: new Map(),
     //             counter: 1 // Initialize a counter for each key
     //         };  
+    //         // console.log("header"+key);
     //     });
-    //     // Populate unique values from the result set
+    //     // // Populate unique values from the result set
+    //     // result.forEach(row => {
+    //     // Object.keys(row).forEach(key => {
+    //     //     // Ensure the key exists in uniqueValues (handles the case where a key might not be in headers)
+    //     //     if (!uniqueValues[key]) {
+    //     //     uniqueValues[key] = {
+    //     //         map: new Map(),
+    //     //         counter: 1
+    //     //     };
+    //     //     // console.log("header"+headers);
+            
+    //     //     }
+    //     //     const value = row[key];
+    //     //     // Add value to Map only if it's not "-" and not already present
+    //     //     if (value !== "-" && !uniqueValues[key].map.has(value)) {
+    //     //     uniqueValues[key].map.set(value, uniqueValues[key].counter);
+    //     //     uniqueValues[key].counter += 1; // Increment counter for the next unique value
+    //     //     }
+    //     // });
+    //     // });
+
+
+    //     // Initialize unique values collection
+    //     const temporaryValues = {};
+
+    //     // Step 1: Collect all unique values for each key
     //     result.forEach(row => {
-    //     Object.keys(row).forEach(key => {
-    //         // Ensure the key exists in uniqueValues (handles the case where a key might not be in headers)
-    //         if (!uniqueValues[key]) {
+    //         Object.keys(row).forEach(key => {
+    //             if (!temporaryValues[key]) {
+    //                 temporaryValues[key] = new Set();
+    //             }
+    //             const value = row[key];
+    //             if (value !== "-") {
+    //                 temporaryValues[key].add(value); // Collect values in a Set to ensure uniqueness
+    //             }
+    //         });
+    //     });
+
+    //     // Step 2: Sort and populate the Map with unique values
+    //     Object.keys(temporaryValues).forEach(key => {
+    //         // Sort values alphabetically
+    //         const sortedValues = Array.from(temporaryValues[key]).sort();
     //         uniqueValues[key] = {
     //             map: new Map(),
     //             counter: 1
     //         };
-    //         }
+    //         sortedValues.forEach((value, index) => {
+    //             uniqueValues[key].map.set(value, index + 1); // Assign values starting from 1
+    //         });
+    //     });
 
-    //         const value = row[key];
-    //         // Add value to Map only if it's not "-" and not already present
-    //         if (value !== "-" && !uniqueValues[key].map.has(value)) {
-    //         uniqueValues[key].map.set(value, uniqueValues[key].counter);
-    //         uniqueValues[key].counter += 1; // Increment counter for the next unique value
-    //         console.log(uniqueValues[key]);
-    //         }
-            
+    //     // Now you can print the sorted and mapped unique values
+    //     Object.keys(uniqueValues).forEach(key => {
+    //         // console.log(key + " -->");
+    //         uniqueValues[key].map.forEach((mappedValue, originalValue) => {
+    //             // console.log("  " + originalValue + " : " + mappedValue);
+    //         });
     //     });
-    //     });
+
     //  // Example of how to access the unique values map
     //     // console.log(uniqueValues.bloodgroup.map);
     //     // console.log(uniqueValues.nativeplace.map);
+    //     // console.log(uniqueValues.martialstatus.map);
+    //     // // console.log(uniqueValues.buisnessprofession);
+    //     // console.log(uniqueValues.relation_with_head.map);
+    //     // console.log(uniqueValues.son.map);
+    //     // console.log(uniqueValues.daughter.map);
+    //     // console.log(uniqueValues.panth.map);
+    //     // // console.log(uniqueValues.category_buisness.map);
+    //     // // console.log(uniqueValues.type_buisness);
+    //     // console.log(uniqueValues.state.map);
+    //     // // console.log(uniqueValues.firmstate);
+    //     // console.log(uniqueValues.opt_matrimony.map)
+        
     //     const keys = Object.keys(anObject);
     //     keys.forEach(key => {
     //     const header = headers.find(header => header[0] === key);
@@ -117,7 +174,7 @@
 
     //     if (secondValue === "6") {
     //         anObject[key]=anObject[key].replaceAll("-","/");
-    //         console.log(key)
+    //         // console.log(key)
     //         cellEditor = 'agDateCellEditor';
     //         filter = 'agDateColumnFilter';
     //     }else if (secondValue === "4" || secondValue === "5") {
@@ -171,6 +228,8 @@
     //     // Set the new column definitions to the grid
     //     gridApi.setGridOption('columnDefs', colDefs);
     //     // console.log("Cell Instances", gridApi.getCellEditorInstances());
+    //     console.log(uniqueValues);
+        
     // }
 
     function dynamicallyConfigureColumnsFromObject(anObject) {
@@ -193,8 +252,6 @@
             });
         });
 
-        console.log("temporary Values",temporaryValues);
-        
         // Step 2: Sort and populate the Map with unique values
         Object.keys(temporaryValues).forEach(key => {
             // Sort values alphabetically
@@ -205,13 +262,8 @@
             };
             sortedValues.forEach((value, index) => {
                 uniqueValues[key].map.set(value, index + 1); // Assign values starting from 1
-                
-              });
-              // console.log(key+"-->"+uniqueValues);
+            });
         });
-
-        console.log("uniqueValues",uniqueValues);
-        
 
         // Step 3: Synchronize and Map Values Based on Header Conditions
         const keys = Object.keys(anObject);
@@ -229,18 +281,15 @@
             // Synchronize with the id series based on fourth value
             if (fourthValue < 0) {
                 const idKey = `id${String.fromCharCode(97 + (-fourthValue - 1))}`; // Convert fourth value to corresponding id series
-                // console.log(idKey+" "+anObject[idKey]);
+                console.log(idKey+" "+anObject[idKey]);
                 // console.log(anObject[idKey]);
                 
                 if (anObject[idKey]) {
                     const mappedValue = uniqueValues[key].map.get(anObject[idKey]);
-                    // console.log(mappedValue+" "+key);
+                    // console.log(mappedValue);
                     
                     anObject[key] = [...uniqueValues[key].map.keys()][mappedValue - 1] || anObject[key];
-                    // if()
-                    console.log(key);
-                    
-                    console.log(uniqueValues[key].map);
+                    console.log(mappedValue+" "+anObject[key]);
                     
                 }
             }
@@ -340,219 +389,39 @@
             
         }
 
-    // }
-
-
-  
-  
-    function dateChecker(str) {
-        return str.split('-').length - 1 === 2;
-    }
-
-
-    // Response 1 Working without checkbox
-    // function onCellValueChanged(event) {
-    //     console.log("Initial uniqueValues:", uniqueValues);
-    //     console.log("Event data before changes:", event.data);
-
-    //     // Create an object to store the key-value pairs for dynamic fields
-    //     const dynamicParams = {};
-    //     const idValue = event.data.Id;
-
-    //     // Iterate over each key in the event data
-    //     Object.keys(event.data).forEach(key => {
-    //         // Find the corresponding header for the current key
-    //         const header = headers.find(header => header[0] === key);
-            
-    //         if (header) {
-    //             const thirdValue = parseInt(header[3], 10);
-                
-    //             // Check if the third value is less than 0
-    //             if (thirdValue < 0) {
-    //                 // Get the mapped value for the current key from uniqueValues
-    //                 const mappedValue = uniqueValues[key].map.get(event.data[key]);
-                    
-    //                 // Replace the value with its mapped value if found
-    //                 if (mappedValue !== undefined) {
-    //                     event.data[key] = mappedValue;
-    //                 } else {
-    //                     // Handle cases where no mapped value is found
-    //                     event.data[key] = null;
-    //                 }
-    //             }
-    //         }
-            
-    //         // Add the final value to dynamicParams
-    //         dynamicParams[key] = event.data[key];
-    //     });
-
-    //     // Call the function to send data to the backend
-    //     sendStorageRequestSaveAs(idValue, dynamicParams);
-
-    //     console.log("Event data after changes:", event.data);
-    // }
-
-    // Reespins 2 Working without checkboc
-    // function onCellValueChanged(event) {
-    //     console.log(uniqueValues);
-    //     console.log("llll");
-        
-    //     console.log("mm", event.data);
-    //     console.log("mm", event.data.Id);
-        
-    //     // Create an object to store the key-value pairs for dynamic fields
-    //     const dynamicParams = {};
-    //     const idValue = event.data.Id;
-
-    //     // Iterate over each key in the event data
-    //     Object.keys(event.data).forEach(key => {
-    //         // Find the corresponding header for the current key
-    //         const header = headers.find(header => header[0] === key);
-    //         if (header) {
-    //             // Check if the header[3] value is less than 0
-    //             const thirdValue = parseInt(header[3], 10);
-    //             if (thirdValue < 0) {
-    //                 // Get the mapped value for the current event.data[key]
-    //                 const displayedValue = event.data[key];
-    //                 const mappedValue = uniqueValues[key]?.map.get(displayedValue);
-
-    //                 // Replace the value in event.data with the mapped value
-    //                 if (mappedValue !== undefined) {
-    //                     event.data[key] = mappedValue;
-    //                 } else {
-    //                     // If mappedValue is not found, you can handle it as needed (e.g., setting it to null)
-    //                     event.data[key] = null;
-    //                 }
-
-    //                 // Store the updated value in dynamicParams
-    //                 dynamicParams[key] = event.data[key];
-    //             } else {
-    //                 // If header[3] is not less than 0, just copy the value to dynamicParams
-    //                 dynamicParams[key] = event.data[key];
-    //             }
-    //         }
-    //     });
-
-    //     // Call the function to send data to the backend
-    //     sendStorageRequestSaveAs(idValue, dynamicParams);
-
-    //     console.log("AfterChanges", event.data);
-    // }
-
-
-    // Response 3 Working with checkbox but not storing as string
-    // function onCellValueChanged(event) {
-    //     console.log("Initial uniqueValues:", uniqueValues);
-    //     console.log("Event data before changes:", event.data);
-
-    //     // Create an object to store the key-value pairs for dynamic fields
-    //     const dynamicParams = {};
-    //     const idValue = event.data.Id;
-
-    //     // Iterate over each key in the event data
-    //     Object.keys(event.data).forEach(key => {
-    //         // Find the corresponding header for the current key
-    //         const header = headers.find(header => header[0] === key);
-            
-    //         if (header) {
-    //             const thirdValue = parseInt(header[3], 10);
-                
-    //             if (thirdValue < 0) {
-    //                 const mappedValue = uniqueValues[key].map.get(event.data[key]);
-                    
-    //                 // Handle checkbox specifically
-    //                 if (header[1] === "9") { // Assuming '9' is used for checkboxes
-    //                     // Check if the value is selected
-    //                     if (event.data[key] === true) {
-    //                         event.data[key] = 1; // Set to 1 if selected
-    //                     } else {
-    //                         event.data[key] = 2; // Set to 2 if not selected
-    //                     }
-    //                 } else {
-    //                     // For other types
-    //                     if (mappedValue !== undefined) {
-    //                         event.data[key] = mappedValue;
-    //                     } else {
-    //                         // Handle cases where no mapped value is found
-    //                         event.data[key] = null;
-    //                     }
-    //                 }
-    //             }
-    //         }
-            
-    //         // Add the final value to dynamicParams
-    //         dynamicParams[key] = event.data[key];
-    //     });
-
-    //     // Call the function to send data to the backend
-    //     sendStorageRequestSaveAs(idValue, dynamicParams);
-
-    //     console.log("Event data after changes:", event.data);
-    // }
-
-    function onCellValueChanged(event) {
-        console.log("Initial uniqueValues:", uniqueValues);
-        console.log("Event data before changes:", event.data);
-
-        // Create an object to store the key-value pairs for dynamic fields
-        const dynamicParams = {};
-        const idValue = event.data.Id;
-
-        // Iterate over each key in the event data
-        Object.keys(event.data).forEach(key => {
-            // Find the corresponding header for the current key
-            const header = headers.find(header => header[0] === key);
-            
-            if (header) {
-                const thirdValue = parseInt(header[3], 10);
-                
-                if (thirdValue < 0) {
-                    const mappedValue = uniqueValues[key].map.get(event.data[key]);
-
-                    // Handle checkbox specifically
-                    if (header[1] === "9") { // Assuming '9' is used for checkboxes
-                        // Convert boolean to string
-                        if (event.data[key] === true) {
-                            event.data[key] = "1"; // Store as "1" if selected
-                        } else {
-                            event.data[key] = "2"; // Store as "2" if not selected
-                        }
-                    } else {
-                        // For other types, use mappedValue if available
-                        event.data[key] = mappedValue !== undefined ? String(mappedValue) : "";
-                    }
-                }
-            }
-
-            // Add the final value to dynamicParams
-            dynamicParams[key] = event.data[key];
-        });
-
-        // Call the function to send data to the backend
-        sendStorageRequestSaveAs(idValue, dynamicParams);
-
-        console.log("Event data after changes:", event.data);
     }
 
 
 
 
-    function sendStorageRequestSaveAs(idValue,dynamicParams) {
-      alert("sendStorage");
 
-      // Construct the query parameters dynamically
-      const queryString = Object.keys(dynamicParams)
-          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(dynamicParams[key])}`)
-          .join('&');
+function sendStorageRequestSaveAs(idValue, dynamicParams) {
+    alert("sendStorage");
 
-      const url = `https://dummy.kreonsolutions.in/api/appdb.php?FormID=1&editID=${idValue}&${queryString}`;
+    // Exclude keys that follow the pattern id[alphabet]
+    const filteredParams = Object.keys(dynamicParams)
+        .filter(key => !/^id[a-z]$/i.test(key))  // Regular expression to match 'id' followed by any single alphabet
+        .reduce((obj, key) => {
+            obj[key] = dynamicParams[key];
+            return obj;
+        }, {});
 
-      $.post(url, function(returnedData) {
-          console.log(returnedData);
-      }, 'json').fail(function() {
-          console.log("error");
-      });
-    }
+    // Construct the query parameters dynamically
+    const queryString = Object.keys(filteredParams)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(filteredParams[key])}`)
+        .join('&');
+
+    const url = `https://dummy.kreonsolutions.in/api/appdb.php?FormID=1&editID=${idValue}&${queryString}`;
+    console.log(url);
+    
+
+    $.post(url, function(returnedData) {
+        console.log(returnedData);
+    }, 'json').fail(function() {
+        console.log("error");
+    });
+}
+
 
   
   function getDataFromAPI(ID, Reg, EntryNo) {

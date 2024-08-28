@@ -111,41 +111,41 @@
 
 
         // Initialize unique values collection
-const temporaryValues = {};
+        const temporaryValues = {};
 
-// Step 1: Collect all unique values for each key
-result.forEach(row => {
-    Object.keys(row).forEach(key => {
-        if (!temporaryValues[key]) {
-            temporaryValues[key] = new Set();
-        }
-        const value = row[key];
-        if (value !== "-") {
-            temporaryValues[key].add(value); // Collect values in a Set to ensure uniqueness
-        }
-    });
-});
+        // Step 1: Collect all unique values for each key
+        result.forEach(row => {
+            Object.keys(row).forEach(key => {
+                if (!temporaryValues[key]) {
+                    temporaryValues[key] = new Set();
+                }
+                const value = row[key];
+                if (value !== "-") {
+                    temporaryValues[key].add(value); // Collect values in a Set to ensure uniqueness
+                }
+            });
+        });
 
-// Step 2: Sort and populate the Map with unique values
-Object.keys(temporaryValues).forEach(key => {
-    // Sort values alphabetically
-    const sortedValues = Array.from(temporaryValues[key]).sort();
-    uniqueValues[key] = {
-        map: new Map(),
-        counter: 1
-    };
-    sortedValues.forEach((value, index) => {
-        uniqueValues[key].map.set(value, index + 1); // Assign values starting from 1
-    });
-});
+        // Step 2: Sort and populate the Map with unique values
+        Object.keys(temporaryValues).forEach(key => {
+            // Sort values alphabetically
+            const sortedValues = Array.from(temporaryValues[key]).sort();
+            uniqueValues[key] = {
+                map: new Map(),
+                counter: 1
+            };
+            sortedValues.forEach((value, index) => {
+                uniqueValues[key].map.set(value, index + 1); // Assign values starting from 1
+            });
+        });
 
-// Now you can print the sorted and mapped unique values
-Object.keys(uniqueValues).forEach(key => {
-    console.log(key + " -->");
-    uniqueValues[key].map.forEach((mappedValue, originalValue) => {
-        console.log("  " + originalValue + " : " + mappedValue);
-    });
-});
+        // Now you can print the sorted and mapped unique values
+        Object.keys(uniqueValues).forEach(key => {
+            // console.log(key + " -->");
+            uniqueValues[key].map.forEach((mappedValue, originalValue) => {
+                // console.log("  " + originalValue + " : " + mappedValue);
+            });
+        });
 
      // Example of how to access the unique values map
         console.log(uniqueValues.bloodgroup.map);
